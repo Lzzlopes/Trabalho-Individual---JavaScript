@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cadastro.css">
+
+    <script>
+        function validarCadastro() {
+            // Obtém os elementos de entrada do formulário
+            const nomeInput = document.querySelector('input[name="nome"]');
+            const emailInput = document.querySelector('input[name="email"]');
+            const cpfInput = document.querySelector('input[name="cpf"]');
+            const senhaInput = document.querySelector('input[name="senha"]');
+
+            // Remove as classes de erro
+            nomeInput.classList.remove("error");
+            emailInput.classList.remove("error");
+            cpfInput.classList.remove("error");
+            senhaInput.classList.remove("error");
+
+            // Obtém os valores dos campos
+            const nome = nomeInput.value.trim();
+            const email = emailInput.value.trim();
+            const cpf = cpfInput.value.trim();
+            const senha = senhaInput.value.trim();
+
+            // Realiza a validação dos campos
+            let isValid = true;
+
+            if (nome === '') {
+                nomeInput.classList.add("error");
+                isValid = false;
+            }
+
+            if (email === '' || !validarEmail(email)) {
+                emailInput.classList.add("error");
+                isValid = false;
+            }
+
+            if (cpf === '' || !validarCPF(cpf)) {
+                cpfInput.classList.add("error");
+                isValid = false;
+            }
+
+            if (senha === '') {
+                senhaInput.classList.add("error");
+                isValid = false;
+            }
+
+            // Se a validação for bem-sucedida, o formulário será enviado
+            return isValid;
+        }
+    </script>
+
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="https://res.cloudinary.com/amenitiz/image/upload/w_500,dpr_auto,f_auto,q_auto:good/v1669200647/dcesceo8vxv1tdayztom.png" alt="">
+        </a>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+    <main>
+        <section>
+
+            <h1>Cadastro</h1>
+            
+            <!-- Adiciona um evento de submissão ao formulário -->
+            <form action="/index.html" onsubmit="return validarCadastro()">
+
+                <!-- Adiciona atributos 'name' aos campos -->
+                <div class="inputbox">
+                    <input type="text" name="nome" required="required" placeholder=" ">
+                    <span>Nome</span>
+                    <p class="error-message">Campo obrigatório</p>
+                </div>
+
+                <div class="inputbox">
+                    <input type="email" name="email" required="required" placeholder=" ">
+                    <span>E-mail</span>
+                    <p class="error-message">E-mail inválido</p>
+                </div>
+
+                <div class="inputbox">
+                    <input type="number" name="cpf" required="required" placeholder=" ">
+                    <span>CPF</span>
+                    <p class="error-message">CPF inválido</p>
+                </div>
+
+                <div class="inputbox">
+                    <input type="password" name="senha" required="required" placeholder=" ">
+                    <span>Senha</span>
+                    <p class="error-message">Campo obrigatório</p>
+                </div>
+
+                <div class="under">
+                    <input type="submit" class="submit" value="Cadastrar">
+                    <p class="ptocad">Já possui cadastro? <a href="login.html">Faça login</a></p>
+                </div>
+
+            </form>
+
+        </section>
+    </main>
+</body>
+
+</html>
